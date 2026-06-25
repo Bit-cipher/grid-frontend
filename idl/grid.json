@@ -1,0 +1,1145 @@
+{
+  "address": "5FfK29L2jUZGYqwE4sGsyKJdJ4tDE2wrbpzzYdR5EUH",
+  "metadata": {
+    "name": "grid",
+    "version": "0.1.0",
+    "spec": "0.1.0",
+    "description": "Created with Anchor"
+  },
+  "instructions": [
+    {
+      "name": "cancel_tournament",
+      "discriminator": [
+        249,
+        227,
+        133,
+        5,
+        9,
+        142,
+        29,
+        122
+      ],
+      "accounts": [
+        {
+          "name": "tournament",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  116,
+                  111,
+                  117,
+                  114,
+                  110,
+                  97,
+                  109,
+                  101,
+                  110,
+                  116
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "tournament.organizer",
+                "account": "Tournament"
+              },
+              {
+                "kind": "account",
+                "path": "tournament.tournament_id",
+                "account": "Tournament"
+              }
+            ]
+          }
+        },
+        {
+          "name": "organizer",
+          "writable": true,
+          "signer": true
+        }
+      ],
+      "args": []
+    },
+    {
+      "name": "claim_refund_sol",
+      "discriminator": [
+        8,
+        82,
+        5,
+        144,
+        194,
+        114,
+        255,
+        20
+      ],
+      "accounts": [
+        {
+          "name": "tournament",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  116,
+                  111,
+                  117,
+                  114,
+                  110,
+                  97,
+                  109,
+                  101,
+                  110,
+                  116
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "tournament.organizer",
+                "account": "Tournament"
+              },
+              {
+                "kind": "account",
+                "path": "tournament.tournament_id",
+                "account": "Tournament"
+              }
+            ]
+          }
+        },
+        {
+          "name": "player_registration",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  114,
+                  101,
+                  103,
+                  105,
+                  115,
+                  116,
+                  114,
+                  97,
+                  116,
+                  105,
+                  111,
+                  110
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "tournament"
+              },
+              {
+                "kind": "account",
+                "path": "player"
+              }
+            ]
+          }
+        },
+        {
+          "name": "sol_vault",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  115,
+                  111,
+                  108,
+                  95,
+                  118,
+                  97,
+                  117,
+                  108,
+                  116
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "tournament"
+              }
+            ]
+          }
+        },
+        {
+          "name": "player",
+          "writable": true,
+          "signer": true
+        }
+      ],
+      "args": []
+    },
+    {
+      "name": "create_player_profile",
+      "discriminator": [
+        74,
+        49,
+        165,
+        71,
+        60,
+        87,
+        254,
+        50
+      ],
+      "accounts": [
+        {
+          "name": "player_profile",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  112,
+                  114,
+                  111,
+                  102,
+                  105,
+                  108,
+                  101
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "player"
+              }
+            ]
+          }
+        },
+        {
+          "name": "player",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        }
+      ],
+      "args": []
+    },
+    {
+      "name": "create_tournament",
+      "discriminator": [
+        158,
+        137,
+        233,
+        231,
+        73,
+        132,
+        191,
+        68
+      ],
+      "accounts": [
+        {
+          "name": "platform",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  112,
+                  108,
+                  97,
+                  116,
+                  102,
+                  111,
+                  114,
+                  109
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "tournament",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  116,
+                  111,
+                  117,
+                  114,
+                  110,
+                  97,
+                  109,
+                  101,
+                  110,
+                  116
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "organizer"
+              },
+              {
+                "kind": "account",
+                "path": "platform.tournament_count",
+                "account": "PlatformState"
+              }
+            ]
+          }
+        },
+        {
+          "name": "organizer",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        }
+      ],
+      "args": [
+        {
+          "name": "title",
+          "type": "string"
+        },
+        {
+          "name": "game",
+          "type": "string"
+        },
+        {
+          "name": "entry_fee",
+          "type": "u64"
+        },
+        {
+          "name": "max_players",
+          "type": "u16"
+        },
+        {
+          "name": "payout_bps",
+          "type": {
+            "vec": "u16"
+          }
+        },
+        {
+          "name": "payment_type",
+          "type": {
+            "defined": {
+              "name": "PaymentType"
+            }
+          }
+        },
+        {
+          "name": "payment_mint",
+          "type": "pubkey"
+        }
+      ]
+    },
+    {
+      "name": "finalize_tournament_sol",
+      "discriminator": [
+        167,
+        71,
+        234,
+        6,
+        165,
+        103,
+        41,
+        66
+      ],
+      "accounts": [
+        {
+          "name": "tournament",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  116,
+                  111,
+                  117,
+                  114,
+                  110,
+                  97,
+                  109,
+                  101,
+                  110,
+                  116
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "tournament.organizer",
+                "account": "Tournament"
+              },
+              {
+                "kind": "account",
+                "path": "tournament.tournament_id",
+                "account": "Tournament"
+              }
+            ]
+          }
+        },
+        {
+          "name": "sol_vault",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  115,
+                  111,
+                  108,
+                  95,
+                  118,
+                  97,
+                  117,
+                  108,
+                  116
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "tournament"
+              }
+            ]
+          }
+        },
+        {
+          "name": "organizer",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        }
+      ],
+      "args": [
+        {
+          "name": "winners",
+          "type": {
+            "vec": "pubkey"
+          }
+        }
+      ]
+    },
+    {
+      "name": "initialize_platform",
+      "discriminator": [
+        119,
+        201,
+        101,
+        45,
+        75,
+        122,
+        89,
+        3
+      ],
+      "accounts": [
+        {
+          "name": "platform",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  112,
+                  108,
+                  97,
+                  116,
+                  102,
+                  111,
+                  114,
+                  109
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "admin",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "treasury"
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        }
+      ],
+      "args": [
+        {
+          "name": "platform_fee_bps",
+          "type": "u16"
+        }
+      ]
+    },
+    {
+      "name": "join_tournament_sol",
+      "discriminator": [
+        217,
+        243,
+        78,
+        20,
+        75,
+        198,
+        184,
+        66
+      ],
+      "accounts": [
+        {
+          "name": "tournament",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  116,
+                  111,
+                  117,
+                  114,
+                  110,
+                  97,
+                  109,
+                  101,
+                  110,
+                  116
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "tournament.organizer",
+                "account": "Tournament"
+              },
+              {
+                "kind": "account",
+                "path": "tournament.tournament_id",
+                "account": "Tournament"
+              }
+            ]
+          }
+        },
+        {
+          "name": "player_registration",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  114,
+                  101,
+                  103,
+                  105,
+                  115,
+                  116,
+                  114,
+                  97,
+                  116,
+                  105,
+                  111,
+                  110
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "tournament"
+              },
+              {
+                "kind": "account",
+                "path": "player"
+              }
+            ]
+          }
+        },
+        {
+          "name": "sol_vault",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  115,
+                  111,
+                  108,
+                  95,
+                  118,
+                  97,
+                  117,
+                  108,
+                  116
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "tournament"
+              }
+            ]
+          }
+        },
+        {
+          "name": "player",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        }
+      ],
+      "args": []
+    }
+  ],
+  "accounts": [
+    {
+      "name": "PlatformState",
+      "discriminator": [
+        160,
+        10,
+        182,
+        134,
+        98,
+        122,
+        78,
+        239
+      ]
+    },
+    {
+      "name": "PlayerProfile",
+      "discriminator": [
+        82,
+        226,
+        99,
+        87,
+        164,
+        130,
+        181,
+        80
+      ]
+    },
+    {
+      "name": "PlayerRegistration",
+      "discriminator": [
+        245,
+        199,
+        242,
+        232,
+        93,
+        39,
+        206,
+        161
+      ]
+    },
+    {
+      "name": "Tournament",
+      "discriminator": [
+        175,
+        139,
+        119,
+        242,
+        115,
+        194,
+        57,
+        92
+      ]
+    }
+  ],
+  "events": [
+    {
+      "name": "PlatformInitialized",
+      "discriminator": [
+        16,
+        222,
+        212,
+        5,
+        213,
+        140,
+        112,
+        162
+      ]
+    },
+    {
+      "name": "PlayerJoined",
+      "discriminator": [
+        39,
+        144,
+        49,
+        106,
+        108,
+        210,
+        183,
+        38
+      ]
+    },
+    {
+      "name": "PlayerProfileCreated",
+      "discriminator": [
+        221,
+        30,
+        180,
+        224,
+        136,
+        253,
+        108,
+        70
+      ]
+    },
+    {
+      "name": "TournamentCreated",
+      "discriminator": [
+        102,
+        32,
+        240,
+        45,
+        52,
+        64,
+        97,
+        0
+      ]
+    },
+    {
+      "name": "TournamentFinalized",
+      "discriminator": [
+        34,
+        61,
+        238,
+        26,
+        68,
+        54,
+        253,
+        144
+      ]
+    }
+  ],
+  "errors": [
+    {
+      "code": 6000,
+      "name": "PlatformPaused",
+      "msg": "Platform is currently paused."
+    },
+    {
+      "code": 6001,
+      "name": "InvalidPlatformFee",
+      "msg": "Invalid platform fee."
+    },
+    {
+      "code": 6002,
+      "name": "TitleTooLong",
+      "msg": "Title is too long."
+    },
+    {
+      "code": 6003,
+      "name": "GameNameTooLong",
+      "msg": "Game name is too long."
+    },
+    {
+      "code": 6004,
+      "name": "InvalidEntryFee",
+      "msg": "Entry fee must be greater than zero."
+    },
+    {
+      "code": 6005,
+      "name": "InvalidMaxPlayers",
+      "msg": "Max players must be greater than one."
+    },
+    {
+      "code": 6006,
+      "name": "TooManyPlayers",
+      "msg": "Too many players."
+    },
+    {
+      "code": 6007,
+      "name": "TooManyWinners",
+      "msg": "Too many winners."
+    },
+    {
+      "code": 6008,
+      "name": "InvalidPayoutSplit",
+      "msg": "Payout basis points must sum to 10000."
+    },
+    {
+      "code": 6009,
+      "name": "TournamentNotOpen",
+      "msg": "Tournament is not open."
+    },
+    {
+      "code": 6010,
+      "name": "TournamentNotCompleted",
+      "msg": "Tournament is not completed."
+    },
+    {
+      "code": 6011,
+      "name": "TournamentFull",
+      "msg": "Tournament is already full."
+    },
+    {
+      "code": 6012,
+      "name": "PlayerAlreadyJoined",
+      "msg": "Player already joined this tournament."
+    },
+    {
+      "code": 6013,
+      "name": "InvalidPaymentType",
+      "msg": "Invalid payment type for this instruction."
+    },
+    {
+      "code": 6014,
+      "name": "UnauthorizedOrganizer",
+      "msg": "Only the organizer can perform this action."
+    },
+    {
+      "code": 6015,
+      "name": "WinnerPayoutMismatch",
+      "msg": "Winner count does not match payout split count."
+    },
+    {
+      "code": 6016,
+      "name": "InvalidWinnerAccount",
+      "msg": "Winner account does not match submitted winner address."
+    },
+    {
+      "code": 6017,
+      "name": "WinnerNotRegistered",
+      "msg": "Winner must be a registered player."
+    },
+    {
+      "code": 6018,
+      "name": "TournamentAlreadyCompleted",
+      "msg": "Tournament has already been finalized."
+    },
+    {
+      "code": 6019,
+      "name": "MathOverflow",
+      "msg": "Math overflow."
+    }
+  ],
+  "types": [
+    {
+      "name": "PaymentType",
+      "type": {
+        "kind": "enum",
+        "variants": [
+          {
+            "name": "Sol"
+          },
+          {
+            "name": "Spl"
+          }
+        ]
+      }
+    },
+    {
+      "name": "PlatformInitialized",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "admin",
+            "type": "pubkey"
+          },
+          {
+            "name": "platform_fee_bps",
+            "type": "u16"
+          },
+          {
+            "name": "treasury",
+            "type": "pubkey"
+          }
+        ]
+      }
+    },
+    {
+      "name": "PlatformState",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "admin",
+            "type": "pubkey"
+          },
+          {
+            "name": "tournament_count",
+            "type": "u64"
+          },
+          {
+            "name": "platform_fee_bps",
+            "type": "u16"
+          },
+          {
+            "name": "treasury",
+            "type": "pubkey"
+          },
+          {
+            "name": "paused",
+            "type": "bool"
+          },
+          {
+            "name": "bump",
+            "type": "u8"
+          }
+        ]
+      }
+    },
+    {
+      "name": "PlayerJoined",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "tournament",
+            "type": "pubkey"
+          },
+          {
+            "name": "player",
+            "type": "pubkey"
+          },
+          {
+            "name": "amount",
+            "type": "u64"
+          }
+        ]
+      }
+    },
+    {
+      "name": "PlayerProfile",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "player",
+            "type": "pubkey"
+          },
+          {
+            "name": "tournaments_played",
+            "type": "u64"
+          },
+          {
+            "name": "wins",
+            "type": "u64"
+          },
+          {
+            "name": "earnings",
+            "type": "u64"
+          },
+          {
+            "name": "trophies",
+            "type": "u64"
+          },
+          {
+            "name": "created_at",
+            "type": "i64"
+          },
+          {
+            "name": "bump",
+            "type": "u8"
+          }
+        ]
+      }
+    },
+    {
+      "name": "PlayerProfileCreated",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "player",
+            "type": "pubkey"
+          }
+        ]
+      }
+    },
+    {
+      "name": "PlayerRegistration",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "tournament",
+            "type": "pubkey"
+          },
+          {
+            "name": "player",
+            "type": "pubkey"
+          },
+          {
+            "name": "paid_amount",
+            "type": "u64"
+          },
+          {
+            "name": "joined_at",
+            "type": "i64"
+          },
+          {
+            "name": "refunded",
+            "type": "bool"
+          },
+          {
+            "name": "bump",
+            "type": "u8"
+          }
+        ]
+      }
+    },
+    {
+      "name": "Tournament",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "organizer",
+            "type": "pubkey"
+          },
+          {
+            "name": "tournament_id",
+            "type": "u64"
+          },
+          {
+            "name": "title",
+            "type": "string"
+          },
+          {
+            "name": "game",
+            "type": "string"
+          },
+          {
+            "name": "entry_fee",
+            "type": "u64"
+          },
+          {
+            "name": "max_players",
+            "type": "u16"
+          },
+          {
+            "name": "current_players",
+            "type": "u16"
+          },
+          {
+            "name": "payment_mint",
+            "type": "pubkey"
+          },
+          {
+            "name": "payment_type",
+            "type": {
+              "defined": {
+                "name": "PaymentType"
+              }
+            }
+          },
+          {
+            "name": "status",
+            "type": {
+              "defined": {
+                "name": "TournamentStatus"
+              }
+            }
+          },
+          {
+            "name": "prize_pool",
+            "type": "u64"
+          },
+          {
+            "name": "players",
+            "type": {
+              "vec": "pubkey"
+            }
+          },
+          {
+            "name": "winners",
+            "type": {
+              "vec": "pubkey"
+            }
+          },
+          {
+            "name": "payout_bps",
+            "type": {
+              "vec": "u16"
+            }
+          },
+          {
+            "name": "created_at",
+            "type": "i64"
+          },
+          {
+            "name": "bump",
+            "type": "u8"
+          }
+        ]
+      }
+    },
+    {
+      "name": "TournamentCreated",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "tournament",
+            "type": "pubkey"
+          },
+          {
+            "name": "organizer",
+            "type": "pubkey"
+          },
+          {
+            "name": "tournament_id",
+            "type": "u64"
+          },
+          {
+            "name": "title",
+            "type": "string"
+          }
+        ]
+      }
+    },
+    {
+      "name": "TournamentFinalized",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "tournament",
+            "type": "pubkey"
+          },
+          {
+            "name": "winners",
+            "type": {
+              "vec": "pubkey"
+            }
+          },
+          {
+            "name": "prize_pool",
+            "type": "u64"
+          }
+        ]
+      }
+    },
+    {
+      "name": "TournamentStatus",
+      "type": {
+        "kind": "enum",
+        "variants": [
+          {
+            "name": "Open"
+          },
+          {
+            "name": "Active"
+          },
+          {
+            "name": "Completed"
+          },
+          {
+            "name": "Cancelled"
+          }
+        ]
+      }
+    }
+  ]
+}
