@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/set-state-in-effect */
 "use client";
 
 import { useEffect, useState } from "react";
@@ -23,11 +22,9 @@ export type TournamentItem = {
 export function TournamentList({
   filter,
   onSelect,
-  refreshNonce,
 }: {
   filter?: "mine" | "completed";
   onSelect?: (tournament: PublicKey) => void;
-  refreshNonce?: number;
 }) {
   const wallet = useAnchorWallet();
   const [items, setItems] = useState<TournamentItem[]>([]);
@@ -36,7 +33,7 @@ export function TournamentList({
     if (!wallet) return;
 
     const program = getProgram(wallet);
-    const accounts = await program.account.tournament.all();
+    const accounts = await (program.account).tournament.all();
 
     let mapped: TournamentItem[] = accounts.map((item) => {
       const t = item.account;
@@ -71,10 +68,12 @@ export function TournamentList({
   }
 
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     load();
     const i = setInterval(load, 5000);
     return () => clearInterval(i);
-  }, [wallet, refreshNonce]);
+  }, [wallet]);
+
   if (!wallet) {
     return <Empty text="Connect wallet to fetch tournaments from chain." />;
   }
